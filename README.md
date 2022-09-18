@@ -1,65 +1,28 @@
-<h1 align="center">
-  <b>Save Restricted Content Bot</b>
-</h1> 
+# Save Restricted Content Bot
 
-Contact: [Telegram](https://t.me/Anonim235)
+A Simple Telegram Bot to Save Restricted Content With Custom Thumbmail.
 
-A stable telegram bot to get restricted messages with custom thumbnail support , made by Mahesh Chauhan. 
-
-- works for both public and private channels
-- Custom thumbnail support for Pvt medias
-- supports text and webpage media messages
-- Faster speed
-- Forcesubscribe available 
-- `/batch` - (For owner only) Use this command to save upto 100 files from a pvt or public restricted channel at once.
-- Time delay is added to avoid FloodWait and keep user account safe. 
+<p><a href="https://t.me/Anonim235"> <img src="https://img.shields.io/badge/Telegram-blue?style=for-the-badge&logo=telegram&logoColor=white" width="100""/></a></p>
 
 # Variables
 
 - `API_ID`
 - `API_HASH`
-- `SESSION`
-- `BOT_TOKEN` 
-- `AUTH` - Owner user id
-- `FORCESUB` - Public channel username without '@'. Don't forget to add bot in channel as administrator. 
+- `SESSION` - Pyrogram string session
+Get pyrogram string session from [BOT](https://t.me/SessionStringGeneratorZBot) or [Replit](https://replit.com/@dashezup/generate-pyrogram-session-string).
+- `BOT TOKEN` 
 
-# Get API & PYROGRAM string session from:
- 
-API: [API scrapper Bot](https://t.me/USETGSBOT) or [Telegram.org](https://my.telegram.org/auth)
-
-PYROGRAM SESSION: [SessionGen Bot](https://t.me/SessionStringGeneratorZBot)
-
-BOT TOKEN: @Botfather on telegram
-
-# Deploy
-
-Deploy your bot on `Render`
-
-Tutorial - [Click here](https://telegra.ph/SRCB-on-Render-05-17)
-
-Deploy your bot on `heroku`
-
-» Method - 1:
-- Star the repo, and fork it in desktop mode
-- Go to settings of your forked repo
-- Rename your repo by any other name
-- Click on  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
- 
-» Method - 2:
-- Star the repo, and fork it in desktop mode
-- create app in heroku
-- go to settings of app›› config vars›› add all variables
-- add buildpacks
-- connect to github and deploy
-- turn on dynos
-  
-Buildpacks for manual deploy:
+# Builpacks
 
 - `heroku/python`
 - `https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git`
 
-Deploy your bot on `Okteto` [Useless]
-  
-Tutorial for okteto - [click here](https://telegra.ph/Okteto-Deploy-04-01)
+# Issues
+- if you see any message like `ERROR R12` in heroku logs, just restart. 
+- `CHANNEL INVALID` if channel not joined. 
+- if you face `ERROR: Client has not been started yet` then just send `/start`.
 
-[![Develop on Okteto](https://okteto.com/develop-okteto.svg)](https://cloud.okteto.com)
+# Deploy
+<p><a href="https://heroku.com/deploy"> <img src="https://img.shields.io/badge/Deploy%20To%20Heroku-blueviolet?style=for-the-badge&logo=heroku" width="200""/></a></p>
+
+if deploy button doesn't work, then deploy `manually.`

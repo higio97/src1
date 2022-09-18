@@ -1,28 +1,23 @@
 #Anonim235
 
-from pyrogram.errors import FloodWait, InviteHashInvalid, InviteHashExpired, UserAlreadyParticipant
-from telethon import errors, events
+from pyrogram import Client
+from pyrogram.errors import FloodWait, BadRequest
 
 import asyncio, subprocess, re, os, time
-from pathlib import Path
-from datetime import datetime as dt
 
 #Join private chat-------------------------------------------------------------------------------------------------------------
 
 async def join(client, invite_link):
     try:
         await client.join_chat(invite_link)
-        return "Berhasil Bergabung Pada Channel"
-    except UserAlreadyParticipant:
-        return "Pengguna Sudah Join Ke Channel."
-    except (InviteHashInvalid, InviteHashExpired):
-        return "Tidak Dapat Bergabung. Mungkin Link Kedaluwarsa atau Tidak Valid."
+        return "Berhasil Gabung Ke Channel"
+    except BadRequest:
+        return "Tidak Dapat Bergabung. Mungkin Tautan Kedaluwarsa atau Tidak Valid."
     except FloodWait:
-        return "Terlalu Banyak Mencoba, Silahkan Coba Lagi Nanti."
+        return "Terlalu Banyak Permintaan, Coba Lagi Nanti!"
     except Exception as e:
-        print(e)
-        return "Tidak Dapat Bergabung, Coba Bergabung Secara Manual."
-    
+        return f"{str(e)}"
+           
 #Regex---------------------------------------------------------------------------------------------------------------
 #to get the url from event
 
@@ -40,34 +35,23 @@ def get_link(string):
     
 #Screenshot---------------------------------------------------------------------------------------------------------------
 
-def hhmmss(seconds):
-    x = time.strftime('%H:%M:%S',time.gmtime(seconds))
-    return x
-
-async def screenshot(video, duration, sender):
-    if os.path.exists(f'{sender}.jpg'):
+async def screenshot(video, time_stamp, sender):
+    if os.path.isfile(f'{sender}.jpg'):
         return f'{sender}.jpg'
-    time_stamp = hhmmss(int(duration)/2)
-    out = dt.now().isoformat("_", "seconds") + ".jpg"
-    cmd = ["ffmpeg",
-           "-ss",
-           f"{time_stamp}", 
-           "-i",
-           f"{video}",
-           "-frames:v",
-           "1", 
-           f"{out}",
-           "-y"
-          ]
+    out = str(video).split(".")[0] + ".jpg"
+    cmd = (f"ffmpeg -ss {time_stamp} -i {video} -vframes 1 {out}").split(" ")
     process = await asyncio.create_subprocess_exec(
-        *cmd,
-        stdout=asyncio.subprocess.PIPE,
-        stderr=asyncio.subprocess.PIPE
-    )
+         *cmd,
+         stdout=asyncio.subprocess.PIPE,
+         stderr=asyncio.subprocess.PIPE)
+        
     stdout, stderr = await process.communicate()
     x = stderr.decode().strip()
     y = stdout.decode().strip()
+    print(x)
+    print(y)
     if os.path.isfile(out):
         return out
     else:
-        None       
+        None
+        
